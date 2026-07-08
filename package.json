@@ -1,17 +1,17 @@
 {
   "name": "nigerian-realestate-saas-backend",
   "version": "1.0.0",
-  "description": "Core Backend Engine for Multitenant Real Estate SaaS",
+  "description": "Comprehensive Backend Engine for Multi-tenant Real Estate SaaS",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.0",
-    "@google/genai": "^0.1.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "@supabase/supabase-js": "latest",
+    "@google/genai": "latest",
+    "express": "latest",
+    "cors": "latest",
+    "dotenv": "latest"
   },
   "engines": {
     "node": ">=18.0.0"
