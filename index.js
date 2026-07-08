@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
+const whatsappRouter = require('./whatsapp'); // Links your WhatsApp module
 require('dotenv').config();
 
 const app = express();
@@ -63,7 +64,7 @@ app.post('/api/properties', authorizeUser(['ADMIN', 'MD_CEO']), async (req, res)
         .select();
 
     if (error) return res.status(500).json({ error: error.message });
-    return res.status(201).json({ message: 'Property listed successfully', property: data[0] });
+    return res.status(201).json({ message: 'Property listed successfully', property: data });
 });
 
 // ROUTE: Fetch Accountant's Transaction Ledger (Accountant & MD/CEO Only)
@@ -92,8 +93,11 @@ app.patch('/api/milestones/:id', authorizeUser(['ADMIN', 'MARKETER', 'MD_CEO']),
         .select();
 
     if (error) return res.status(500).json({ error: error.message });
-    return res.status(200).json({ message: 'Milestone updated', milestone: data[0] });
+    return res.status(200).json({ message: 'Milestone updated', milestone: data });
 });
+
+// ROUTE: Activate the WhatsApp dynamic webhook communications
+app.use('/api/whatsapp', whatsappRouter);
 
 // Bind server to production port environment
 const PORT = process.env.PORT || 10000;
